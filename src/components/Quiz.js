@@ -89,6 +89,7 @@ export default function Quiz({ level, questionCount, timeLimit, onBack }) {
     setQuestions(rest);
     setCurrent(firstQ);
 
+    // --- ここから初期化 ---
     setQuestionNumber(1);
     setLives(3);
     setSkipUsed(false);
@@ -97,10 +98,17 @@ export default function Quiz({ level, questionCount, timeLimit, onBack }) {
     setResult("");
     setWarning("");
     setMessageType("");
+
     setStage(getLevelStage(1));
     setShowLevelIntro(true);
     setTimeLeft(timeLimit);
     setIsChecking(false);
+
+    // ★ この3つを必ず追加する
+    setShowTimeout(false); // タイムアウト画面リセット
+    setIsClear(false); // クリア状態リセット
+    setShowConfirm(false); // あきらめる確認ダイアログリセット
+    // -----------------------
   }, [level, questionCount, timeLimit]);
 
   // ★ 修正：stage を依存配列から削除
