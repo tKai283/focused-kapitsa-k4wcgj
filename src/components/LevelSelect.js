@@ -1,42 +1,50 @@
+// src/components/LevelSelect.jsx
 import React from "react";
+import "../styles.css";
 
-export default function LevelSelect({ onSelect }) {
+export default function LevelSelect({ onSelect, onBack }) {
   const levels = [
-    { id: "easy", label: "初級" },
-    { id: "normal", label: "中級" },
-    { id: "hard", label: "上級" },
-    { id: "expert", label: "超級" },
+    {
+      id: "easy",
+      label: "初級",
+      img: "/images/初.jpg",
+    },
+    {
+      id: "normal",
+      label: "中級",
+      img: "/images/中.jpg",
+    },
+    {
+      id: "hard",
+      label: "上級",
+      img: "/images/上.jpg",
+    },
+    {
+      id: "expert",
+      label: "超級",
+      img: "/images/超.jpg",
+    },
   ];
 
   return (
-    <div
-      style={{
-        textAlign: "center",
-        padding: "40px",
-        minHeight: "100vh",
-        backgroundImage: `url("/images/kokuban13.png")`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      <h2 style={{ color: "white", textShadow: "0 0 5px black" }}>
-        難易度を選んでください
-      </h2>
-      {levels.map((lvl) => (
-        <button
-          key={lvl.id}
-          onClick={() => onSelect(lvl.id)}
-          style={{
-            margin: "10px",
-            padding: "10px 20px",
-            fontSize: "18px",
-            borderRadius: "8px",
-            cursor: "pointer",
-          }}
-        >
-          {lvl.label}
-        </button>
-      ))}
+    <div className="level-select-container">
+      <h2>🎮 モード選択 🎮</h2>
+      <div className="level-cards">
+        {levels.map((level) => (
+          <div
+            key={level.id}
+            className="level-card"
+            onClick={() => onSelect(level.id)}
+          >
+            <img src={level.img} alt={level.label} className="level-img" />
+            <div className="level-label">{level.label}</div>
+            <div className="level-desc">{level.description}</div>
+          </div>
+        ))}
+      </div>
+      <button onClick={onBack} className="sub-btn">
+        戻る
+      </button>
     </div>
   );
 }

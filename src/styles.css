@@ -5,7 +5,7 @@
 .App {
   font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
   text-align: center;
-  color: #000000;
+  color: #000000; /*全体の文字の色*/
   min-height: 100vh;
   margin: 0;
   padding: 0;
@@ -625,4 +625,56 @@
 
 .startmenu-next {
   right: 10px;
+}
+.level-select-container {
+  text-align: center;
+  padding: 40px;
+  color: rgb(49, 49, 49);
+}
+
+.level-cards {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.level-card {
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid #fff;
+  border-radius: 12px;
+  width: 180px;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border 0.25s ease;
+  text-align: center;
+  padding: 12px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.level-card:hover {
+  transform: scale(1.08);
+  border-color: gold;
+  box-shadow: 0 0 20px gold;
+}
+
+.level-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.level-label {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 6px;
+  text-shadow: 1px 1px 2px black;
+}
+
+.level-desc {
+  font-size: 14px;
+  white-space: pre-line; /* 改行を反映 */
+  color: #ffd700;
+  text-shadow: 0 0 4px black;
 }
