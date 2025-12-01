@@ -116,16 +116,21 @@ export default function Quiz({ level, questionCount, timeLimit, onBack }) {
     setIsChecking(false); // ✅ 処理中フラグをリセット
   }, [level, questionCount, timeLimit]);
 
-  // === ステージ変更時のイントロ表示 useEffect ===
-  // questionNumber (盤面) が変わった時にステージを再計算
+  // === ステージ変更時のイントロ表示（競合防止版） ===
   useEffect(() => {
     if (!current || isGameOver) return;
-    const newStage = getLevelStage(questionNumber); // 1-based num
+
+    const newStage = getLevelStage(questionNumber);
+
+    // ★ stage 変更と showLevelIntro を一緒に更新する
     if (newStage !== stage) {
-      setStage(newStage);
-      setShowLevelIntro(true);
+      setShowLevelIntro(false); // いったん確実に閉じる
+      setTimeout(() => {
+        setStage(newStage);
+        setShowLevelIntro(true); // 次のフレームで確実に開く
+      }, 0);
     }
-  }, [questionNumber, questionCount, stage, current, isGameOver]);
+  }, [questionNumber, current, isGameOver]);
 
   // === 背景スタイル ===
   const getBackgroundStyle = () => {
